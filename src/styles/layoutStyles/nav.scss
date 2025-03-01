@@ -1,0 +1,49 @@
+.nav_block {
+  width: 248px;
+  display: grid;
+  padding: 0px 8px;
+  box-sizing: border-box;
+  margin-right: 30px;
+  grid-template-rows: 1fr 15fr;
+  max-height: 550px;
+
+  &_top {
+    max-width: 248px;
+    margin: 14px;
+    .create_schedule_btn {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+      padding: 1px 40px 1px 16px;
+      border-radius: 15px;
+      min-height: 54px;
+      background-color: #fff;
+      display: flex;
+      width: auto;
+      padding-inline: 16px 20px;
+      gap: 12px;
+      align-items: center;
+
+      &_content {
+        font-size: 14px;
+        font-weight: 360;
+
+        &_plus {
+          &_img {
+            width: 23px;
+            height: 23px;
+          }
+        }
+
+        &_img {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+
+  &_bottom {
+    max-width: 248px;
+    margin-top: 10px;
+    height: auto;
+  }
+}

@@ -1,0 +1,63 @@
+.modal_block {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .modal_block_inner {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .modal_schedule_type {
+      display: flex;
+      gap: 8px;
+
+      .modal_schedule_type_inner {
+        flex: 1;
+
+        button {
+          width: 100%;
+          padding: 10px;
+          border: none;
+          background: #f0f0f0;
+          cursor: pointer;
+          border-radius: 4px;
+          transition: background 0.2s;
+
+          &:hover {
+            background: #ddd;
+          }
+        }
+      }
+    }
+
+    &_close {
+      width: 100%;
+      margin-bottom: 10px;
+      height: 15px;
+
+      &_btn {
+        cursor: pointer;
+
+        font-size: 15px;
+        float: right;
+      }
+    }
+  }
+}

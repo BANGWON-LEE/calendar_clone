@@ -1,0 +1,181 @@
+.header_block {
+  background: transparent;
+  min-width: 1060px;
+  position: relative;
+  display: flex;
+  padding: 8px;
+
+  &_left {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding-right: 25px;
+    margin-right: 30px;
+
+    .menu_block {
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 4px;
+      overflow: hidden;
+      vertical-align: middle;
+      cursor: pointer;
+      height: 24px;
+      width: 24px;
+      flex: 0 0 auto;
+      padding: 12px;
+      box-sizing: content-box;
+    }
+
+    .logo_block {
+      &_inner {
+        display: flex;
+
+        &_img {
+          width: 40px;
+          height: 40px;
+          margin-bottom: 4px;
+          padding-right: 4px;
+        }
+
+        &_text {
+          font-size: 22px;
+          //   display: block;
+          line-height: 48px;
+          position: relative;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  &_right {
+    display: flex;
+    align-items: center;
+    height: 48px;
+
+    .google_menu_block {
+      margin: 0px 15px;
+      &_btn {
+        &_img {
+          width: 17px;
+          height: 17px;
+        }
+        &_profile_img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  &_center {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    height: 48px;
+    flex: 1 1 100%;
+    justify-content: space-between;
+
+    &_left_box {
+      display: flex;
+      align-items: center;
+
+      .today_block {
+        margin: 5px 25px 5px 0px;
+        &_btn {
+          font-size: 15px;
+          border: 1px solid #1f1f1f;
+          padding: 10px 20px;
+          border-radius: 35px;
+        }
+      }
+
+      .arrow_block {
+        display: flex;
+
+        .arrow_left {
+          width: 35px;
+        }
+
+        .arrow_right {
+          width: 35px;
+        }
+      }
+
+      .date_block {
+        padding: 8px;
+        &_text {
+          font-size: 24px;
+        }
+      }
+    }
+
+    &_right_box {
+      padding: 0px 10px;
+      display: flex;
+      align-items: center;
+      .sub_menu_block {
+        margin: 0px 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%; // 아이콘을 원형으로 만들기
+        // transition: box-shadow 0.3s ease;
+        &:hover {
+          background-color: #f2f2f2;
+          border-radius: 25px;
+        }
+        padding: 10px;
+        &_btn {
+          &_img {
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+      .select_block {
+        width: 70px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        margin: 0px 10px;
+        &_drop {
+          width: 100%;
+          padding: 10px 10px 10px 17px;
+          border-radius: 50px;
+          appearance: none; // 기본 화살표 제거 (크로스 브라우징 고려)
+          -webkit-appearance: none;
+          -moz-appearance: none;
+
+          background: url('../../assets/arrow-down.png') no-repeat right 15px
+            center;
+          background-size: 12px; // 화살표 크기 조절
+          padding-right: 20px; // 화살표와 텍스트 간격 조절
+        }
+      }
+
+      .view_type_block {
+        width: 105px;
+        display: inline-block;
+        .calendar_type_block_btn {
+          padding: 5px 15px;
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+          border: 1px solid #1f1f1f;
+          border-right: 1px;
+        }
+
+        .check_type_block_btn {
+          padding: 5px 15px;
+          border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;
+          border: 1px solid #1f1f1f;
+        }
+      }
+    }
+  }
+}

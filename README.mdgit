@@ -1,0 +1,1 @@
+# calendar_clone initgit add README.mdgit commit -m first commitgit branch -M maingit remote add origin https://github.com/BANGWON-LEE/calendar_clone.gitgit push -u origin main
