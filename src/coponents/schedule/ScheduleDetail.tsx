@@ -1,16 +1,9 @@
 import { useRef, useState } from 'react'
 import RegisterScheduleModal from '../modal/RegisterScheduleModal'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../stores/dateStore'
+import { adjustAutoSchedule } from '../../utils/schedule'
 
 export default function ScheduleDetail(props: schedlueDetailType) {
   const { index } = props
-
-  const scheduleRegisterdArr = useSelector(
-    (state: RootState) => state.schedule.scheduleRegisterArr
-  )
-
-  console.log('scheduleRegisterdArr', scheduleRegisterdArr)
 
   const schdeuleRef = useRef<HTMLDivElement | null>(null)
 
@@ -37,22 +30,18 @@ export default function ScheduleDetail(props: schedlueDetailType) {
       y: number
     }[]
   >([])
-  console.log('scheduleRegisterdArr@@', scheduleArr)
-
-  //   function registerSchedule() {
-  //     dispatch(addSchedule(scheduleArr))
-  //   }
 
   function setTargetSchedule(event: React.MouseEvent<HTMLDivElement>): void {
     if (!schdeuleRef.current) return
-    const gridSize = 350
+    const gridWidthSize = 350
     const boundingRect = schdeuleRef.current.getBoundingClientRect()
 
     // 부모 div 기준 상대적인 좌표 계산
     const relativeX = event.clientX - boundingRect.left
     const relativeY = event.clientY - boundingRect.top
 
-    const snappedX = Math.floor(relativeX / gridSize) * gridSize
+    const snappedX = Math.floor(relativeX / gridWidthSize) * gridWidthSize
+    const snappedY = adjustAutoSchedule(relativeY)
 
     setScheduleArr(prev => [
       ...prev,
@@ -61,7 +50,7 @@ export default function ScheduleDetail(props: schedlueDetailType) {
         type: '이벤트',
         time: '오전 x시 ~ 오전 x시',
         x: snappedX,
-        y: relativeY,
+        y: snappedY,
       },
     ])
 
