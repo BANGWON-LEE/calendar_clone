@@ -76,21 +76,13 @@
             top: -5px;
           }
           &_line {
-            // max-width: 85vw;
             width: 83vw;
             min-width: 510px;
-            content: '';
             border-top: 1px solid #dde3ea;
             position: absolute;
-            // width: 100%;
-            // max-width: 2700px;
             flex: 1;
-            // min-width: 600px;
-            // margin-top: 5px;
-            // z-index: 3;
             margin-left: 60px;
             pointer-events: none;
-            // }
           }
         }
       }
