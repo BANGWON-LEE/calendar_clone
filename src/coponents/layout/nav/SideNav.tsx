@@ -1,4 +1,3 @@
-// import '../../../styles/layoutStyle/nav.scss'
 import arrowDownIcon from '../../../assets/arrow-down.png'
 import plusIcon from '../../../assets/plus-icon.png'
 import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers'
