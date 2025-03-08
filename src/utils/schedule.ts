@@ -1,7 +1,7 @@
 export function makeTimeInterval(): number[] {
   const start = 15.5
   const step = 24
-  const count = 23
+  const count = 49
 
   const numbers = Array.from({ length: count }, (_, i) => start + i * step)
 
