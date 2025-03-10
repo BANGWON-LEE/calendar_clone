@@ -76,7 +76,7 @@ function RightHeader() {
 }
 
 function CenterHeader() {
-  const nowDate = useSelector((state: RootState) => state.date.today)
+  const nowDate = useSelector((state: RootState) => state.date.choiceDay)
 
   const nowYearAndMonth = getYearAndMonth(new Date(nowDate))
   const dispatch = useDispatch<AppDispatch>()
