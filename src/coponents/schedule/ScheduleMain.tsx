@@ -2,17 +2,23 @@ import days from '../../constant/week.json'
 import times from '../../constant/dayTime.json'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../stores/dateStore'
-import { getWeekDates } from '../../utils/date'
+import { formatDays, formatOnlyDates, getWeekDates } from '../../utils/date'
 import ScheduleDetail from './ScheduleDetail'
 
 export default function ScheduleMain() {
   const week = days
 
-  const weekArr = Array.from({ length: 7 }, () => [])
+  // const weekArr = Array.from({ length: 7 }, () => [])
 
-  const nowDate = useSelector((state: RootState) => state.date.today)
+  const choiceDate = useSelector((state: RootState) => state.date.choiceDay)
 
-  const weekDateArr = getWeekDates(new Date(nowDate))
+  const weekDateArr = getWeekDates(new Date(choiceDate)).map(date => {
+    return formatOnlyDates(date)
+  })
+
+  const weekDaysArr = getWeekDates(new Date(choiceDate)).map(date => {
+    return formatDays(date)
+  })
 
   return (
     <div className="schedule_block">
@@ -55,10 +61,10 @@ export default function ScheduleMain() {
           })}
         </div>
         <div className="date_block">
-          {weekArr.map((_, index) => {
+          {weekDaysArr.map((day, index) => {
             return (
               <div key={'day' + index} className="date_block_inner">
-                <ScheduleDetail index={'innderDay' + index} />
+                <ScheduleDetail index={'innderDay' + index} day={day} />
               </div>
             )
           })}
