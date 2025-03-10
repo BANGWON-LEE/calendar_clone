@@ -1,9 +1,19 @@
 import { useRef, useState } from 'react'
 import RegisterScheduleModal from '../modal/RegisterScheduleModal'
-import { adjustAutoSchedule } from '../../utils/schedule'
+import {
+  adjustAutoSchedule,
+  choiceTimeRange,
+  makeTimeAreaInterval,
+  setTimeAreaFormat,
+} from '../../utils/schedule'
+import {
+  schedlueDetailType,
+  setTimeAreaFormatType,
+  targetSchedulePathType,
+} from '../../type/schduleType'
 
 export default function ScheduleDetail(props: schedlueDetailType) {
-  const { index } = props
+  const { index, day } = props
 
   const schdeuleRef = useRef<HTMLDivElement | null>(null)
 
@@ -25,14 +35,16 @@ export default function ScheduleDetail(props: schedlueDetailType) {
     {
       title: string
       type: string
-      time: Date | string
-      x: number
-      y: number
+      time: string
+      x: number | undefined
+      y: number | undefined
     }[]
   >([])
 
-  function setTargetSchedule(event: React.MouseEvent<HTMLDivElement>): void {
-    if (!schdeuleRef.current) return
+  function setTargetSchedule(
+    event: React.MouseEvent<HTMLDivElement>
+  ): targetSchedulePathType {
+    if (!schdeuleRef.current) return { x: undefined, y: undefined }
     const gridWidthSize = 350
     const boundingRect = schdeuleRef.current.getBoundingClientRect()
 
@@ -43,17 +55,38 @@ export default function ScheduleDetail(props: schedlueDetailType) {
     const snappedX = Math.floor(relativeX / gridWidthSize) * gridWidthSize
     const snappedY = adjustAutoSchedule(relativeY)
 
+    return { x: snappedX, y: snappedY }
+  }
+
+  function resultScheduleArr(
+    targetSchedulePath: targetSchedulePathType,
+    timeArea: setTimeAreaFormatType
+  ): void {
     setScheduleArr(prev => [
       ...prev,
       {
         title: '(제목 없음)',
         type: '이벤트',
-        time: '오전 x시 ~ 오전 x시',
-        x: snappedX,
-        y: snappedY,
+        time: `${timeArea.start + ' ~ ' + timeArea.end}`,
+        x: targetSchedulePath.x,
+        y: targetSchedulePath.y,
       },
     ])
+  }
 
+  function setTotalScheduleArr(event: React.MouseEvent<HTMLDivElement>) {
+    const targetSchedulePath = setTargetSchedule(event)
+    const listTimeScheduleObj = makeTimeAreaInterval(day)
+    console.log('listTimeSchedule', listTimeScheduleObj())
+    const pathTimeArea = choiceTimeRange(
+      targetSchedulePath,
+      listTimeScheduleObj()
+    )
+
+    console.log('pathTimeArea', pathTimeArea)
+    const timeArea = setTimeAreaFormat(pathTimeArea)
+
+    resultScheduleArr(targetSchedulePath, timeArea)
     openScheduleModal()
   }
 
@@ -63,7 +96,7 @@ export default function ScheduleDetail(props: schedlueDetailType) {
         ref={schdeuleRef}
         key={'innerDay' + index}
         className="date_block_detail"
-        onClick={event => setTargetSchedule(event)}
+        onClick={event => setTotalScheduleArr(event)}
       >
         {scheduleArr.map((sd, index) => {
           return (
@@ -76,7 +109,7 @@ export default function ScheduleDetail(props: schedlueDetailType) {
                 left: sd.x,
               }}
             >
-              {'schedule' + index}
+              {sd.time}
             </div>
           )
         })}
@@ -89,8 +122,4 @@ export default function ScheduleDetail(props: schedlueDetailType) {
       )}
     </>
   )
-}
-
-interface schedlueDetailType {
-  index: string
 }
