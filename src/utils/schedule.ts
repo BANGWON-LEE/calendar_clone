@@ -47,7 +47,7 @@ export function choiceTimeRange(
   targetSchedulePath: targetSchedulePathType,
   listTimeScheduleObj: Record<string, number>
 ): choiceTimeRangeType {
-  const pathStep = 12
+  const pathStep = 48
   return {
     start: listTimeScheduleObj[`${targetSchedulePath.y}`],
     end: listTimeScheduleObj[`${targetSchedulePath.y! + pathStep}`],
