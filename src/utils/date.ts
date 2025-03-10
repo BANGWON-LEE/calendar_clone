@@ -6,10 +6,20 @@ export function getWeekDates(date: Date) {
 
   return Array.from({ length: 7 }, (_, i) => {
     const thisMondayDate = new Date(monday)
-    thisMondayDate.setDate(thisMondayDate.getDate() + i)
-    const dates = new Date(thisMondayDate).getDate()
+    const dates = thisMondayDate.setDate(thisMondayDate.getDate() + i)
+    // const dates = new Date(thisMondayDate).getDate()
     return dates
   })
+}
+
+export function formatOnlyDates(date: Date | number) {
+  const dates = new Date(date).getDate()
+  return dates
+}
+
+export function formatDays(date: Date | number) {
+  const dates = new Date(date)
+  return dates
 }
 
 export function getYearAndMonth(date: Date) {
