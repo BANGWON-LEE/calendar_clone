@@ -77,13 +77,11 @@ export default function ScheduleDetail(props: schedlueDetailType) {
   function setTotalScheduleArr(event: React.MouseEvent<HTMLDivElement>) {
     const targetSchedulePath = setTargetSchedule(event)
     const listTimeScheduleObj = makeTimeAreaInterval(day)
-    console.log('listTimeSchedule', listTimeScheduleObj())
     const pathTimeArea = choiceTimeRange(
       targetSchedulePath,
       listTimeScheduleObj()
     )
 
-    console.log('pathTimeArea', pathTimeArea)
     const timeArea = setTimeAreaFormat(pathTimeArea)
 
     resultScheduleArr(targetSchedulePath, timeArea)

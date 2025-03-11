@@ -23,7 +23,7 @@ export function adjustAutoSchedule(target: number): number {
 export function makeTimeAreaInterval(day: Date) {
   const pathStart = 15.5
   const pathStep = 12
-  const pathCnt = 96
+  const pathCnt = 97
 
   const numbers = Array.from(
     { length: pathCnt },
@@ -70,6 +70,7 @@ function convertDateFormat(date: Date) {
 }
 
 export function setTimeAreaFormat(pathTimeArea: choiceTimeRangeType) {
+  console.log('pathTimeArea', pathTimeArea)
   const start = convertDateFormat(new Date(pathTimeArea.start))
   const end = convertDateFormat(new Date(pathTimeArea.end))
 

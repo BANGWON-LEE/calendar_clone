@@ -1,10 +1,10 @@
-import Header from '../coponents/layout/header/Header'
-import SideNav from '../coponents/layout/nav/SideNav'
+import Header from '../components/layout/header/Header'
+import SideNav from '../components/layout/nav/SideNav'
 import '../styles/main.scss'
 import '../styles/layoutStyles/header.scss'
 import '../styles/layoutStyles/nav.scss'
 import '../styles/main/schedule.scss'
-import ScheduleMain from '../coponents/schedule/ScheduleMain'
+import ScheduleMain from '../components/schedule/ScheduleMain'
 
 export default function MainPage() {
   return (
