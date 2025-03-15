@@ -29,8 +29,11 @@ const dateSlice = createSlice({
           : new Date(state.choiceDay)
       state.choiceDay = targetDay.toISOString().split('T')[0] // YYYY-MM-DD
     },
+    todayDate: state => {
+      state.choiceDay = new Date()
+    },
   },
 })
 
-export const { nextWeek, beforeWeek, choiceDay } = dateSlice.actions
+export const { nextWeek, beforeWeek, choiceDay, todayDate } = dateSlice.actions
 export default dateSlice.reducer
