@@ -27,7 +27,7 @@ export default function ScheduleMain() {
           <div className="week_block_inner">
             {week.days.map(day => {
               return (
-                <div className="week_block_inner_box" key={day}>
+                <div key={day} className="week_block_inner_box">
                   <button className="week_block_inner_box_btn">{day}</button>
                 </div>
               )
@@ -38,7 +38,7 @@ export default function ScheduleMain() {
           <div className="week_block_inner">
             {weekDateArr.map(date => {
               return (
-                <div className="week_block_inner_date_box" key={'date-' + date}>
+                <div key={date} className="week_block_inner_date_box">
                   <button className="week_block_inner_date_box_btn">
                     {date}
                   </button>
@@ -61,10 +61,10 @@ export default function ScheduleMain() {
           })}
         </div>
         <div className="date_block">
-          {weekDaysArr.map((day, index) => {
+          {weekDaysArr.map(day => {
             return (
-              <div key={'day' + index} className="date_block_inner">
-                <ScheduleDetail index={'innderDay' + index} day={day} />
+              <div key={day.toString()} className="date_block_inner">
+                <ScheduleDetail day={day} />
               </div>
             )
           })}

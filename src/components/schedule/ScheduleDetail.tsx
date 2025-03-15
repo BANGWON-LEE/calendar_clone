@@ -13,7 +13,7 @@ import {
 } from '../../type/schduleType'
 
 export default function ScheduleDetail(props: schedlueDetailType) {
-  const { index, day } = props
+  const { day } = props
 
   const schdeuleRef = useRef<HTMLDivElement | null>(null)
 
@@ -92,7 +92,6 @@ export default function ScheduleDetail(props: schedlueDetailType) {
     <>
       <div
         ref={schdeuleRef}
-        key={'innerDay' + index}
         className="date_block_detail"
         onClick={event => setTotalScheduleArr(event)}
       >
