@@ -160,7 +160,6 @@ export default function ScheduleDetail(props: schedlueDetailType) {
           closeScheduleModal={closeScheduleModal}
           removeLastSchedule={removeLastSchedule}
           addScheduleArr={addScheduleArr}
-          // titleText={titleText}
         />
       )}
     </>
