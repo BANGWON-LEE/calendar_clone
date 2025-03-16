@@ -28,8 +28,17 @@ export default function ScheduleDetail(props: schedlueDetailType) {
   }
 
   function closeScheduleModal(): void {
+    setInitialSchedule(undefined)
     setScheduleModalState(false)
   }
+
+  const [initialSchedule, setInitialSchedule] = useState<{
+    title: string
+    type: string
+    time: string
+    x: number | undefined
+    y: number | undefined
+  }>()
 
   const [scheduleArr, setScheduleArr] = useState<
     {
@@ -58,23 +67,44 @@ export default function ScheduleDetail(props: schedlueDetailType) {
     return { x: snappedX, y: snappedY }
   }
 
-  function resultScheduleArr(
+  function setInitialSettingBlock(
     targetSchedulePath: targetSchedulePathType,
     timeArea: setTimeAreaFormatType
   ): void {
+    setInitialSchedule({
+      title: '( 제목 없음 )',
+      type: '이벤트',
+      time: `${timeArea.start + ' ~ ' + timeArea.end}`,
+      x: targetSchedulePath.x,
+      y: targetSchedulePath.y,
+    })
+  }
+
+  function addScheduleArr(
+    inputTitleRef: React.RefObject<HTMLInputElement | null>
+  ): void {
+    const title = inputTitleRef.current?.value
+    if (initialSchedule === undefined || title === undefined) return
+
+    console.log('input', inputTitleRef.current?.value)
+
     setScheduleArr(prev => [
       ...prev,
       {
-        title: '(제목 없음)',
+        title: title,
         type: '이벤트',
-        time: `${timeArea.start + ' ~ ' + timeArea.end}`,
-        x: targetSchedulePath.x,
-        y: targetSchedulePath.y,
+        time: `${initialSchedule.time}`,
+        x: initialSchedule.x,
+        y: initialSchedule.y,
       },
     ])
+    setInitialSchedule(undefined)
+    closeScheduleModal()
   }
 
-  function setTotalScheduleArr(event: React.MouseEvent<HTMLDivElement>) {
+  function setInitialTotalSchedule(
+    event: React.MouseEvent<HTMLDivElement>
+  ): void {
     const targetSchedulePath = setTargetSchedule(event)
     const listTimeScheduleObj = makeTimeAreaInterval(day)
     const pathTimeArea = choiceTimeRange(
@@ -84,7 +114,7 @@ export default function ScheduleDetail(props: schedlueDetailType) {
 
     const timeArea = setTimeAreaFormat(pathTimeArea)
 
-    resultScheduleArr(targetSchedulePath, timeArea)
+    setInitialSettingBlock(targetSchedulePath, timeArea)
     openScheduleModal()
   }
 
@@ -93,8 +123,21 @@ export default function ScheduleDetail(props: schedlueDetailType) {
       <div
         ref={schdeuleRef}
         className="date_block_detail"
-        onClick={event => setTotalScheduleArr(event)}
+        onClick={event => setInitialTotalSchedule(event)}
       >
+        {initialSchedule !== undefined && (
+          <div
+            role="button"
+            className="date_block_detail_inner"
+            style={{
+              top: initialSchedule.y,
+              left: initialSchedule.x,
+            }}
+          >
+            <p>{initialSchedule.title}</p>
+            <p>{initialSchedule.time}</p>
+          </div>
+        )}
         {scheduleArr.map((sd, index) => {
           return (
             <div
@@ -106,7 +149,8 @@ export default function ScheduleDetail(props: schedlueDetailType) {
                 left: sd.x,
               }}
             >
-              {sd.time}
+              <p>{sd.title}</p>
+              <p>{sd.time}</p>
             </div>
           )
         })}
@@ -115,6 +159,8 @@ export default function ScheduleDetail(props: schedlueDetailType) {
         <RegisterScheduleModal
           closeScheduleModal={closeScheduleModal}
           removeLastSchedule={removeLastSchedule}
+          addScheduleArr={addScheduleArr}
+          // titleText={titleText}
         />
       )}
     </>
